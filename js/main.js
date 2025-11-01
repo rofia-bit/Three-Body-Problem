@@ -109,8 +109,8 @@ const texturePromises = [
 ];
 
 // physics: simple Newtonian 3-body simulation (leapfrog integrator)
-const G = 0.8; // gravitational constant (tweak for visible motion)
-const scale = 1; // visual scale
+const G = 0.5; // gravitational constant (reduced for larger orbits)
+const scale = 0.8; // visual scale (adjusted to keep everything in view)
 
 // bodyy container
 const bodies = [];
@@ -304,9 +304,9 @@ function animate() {
 // wait for textures to load, create bodies, then start simulation
 Promise.all(texturePromises).then(([earthMap, jupiterMap, saturnMap]) => {
 
-  const b1 = makeBody({ mass: 1.2, position: new THREE.Vector3(-1.5, 0, 0), velocity: new THREE.Vector3(0, -0.25, 0.1), radius: 0.45, color: 0xffffff, map: earthMap });
-  const b2 = makeBody({ mass: 1.0, position: new THREE.Vector3(1.2, 0.2, 0), velocity: new THREE.Vector3(0.0, 0.2, -0.1), radius: 0.4, color: 0xffffff, map: jupiterMap });
-  const b3 = makeBody({ mass: 0.8, position: new THREE.Vector3(0.2, 0.9, 0), velocity: new THREE.Vector3(-0.15, 0.0, 0.05), radius: 0.35, color: 0xffffff, map: saturnMap });
+  const b1 = makeBody({ mass: 1.2, position: new THREE.Vector3(-3.0, 0, 0), velocity: new THREE.Vector3(0, -0.3, 0.15), radius: 0.45, color: 0xffffff, map: earthMap });
+  const b2 = makeBody({ mass: 1.0, position: new THREE.Vector3(2.4, 0.4, 0), velocity: new THREE.Vector3(0.0, 0.25, -0.12), radius: 0.4, color: 0xffffff, map: jupiterMap });
+  const b3 = makeBody({ mass: 0.8, position: new THREE.Vector3(0.4, 2.0, 0), velocity: new THREE.Vector3(-0.2, 0.0, 0.1), radius: 0.35, color: 0xffffff, map: saturnMap });
   bodies.push(b1, b2, b3);
 
 
